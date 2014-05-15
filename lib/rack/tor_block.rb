@@ -11,7 +11,7 @@ module Rack
 
     def call(env)
       req = Rack::Request.new(env)
-      return [302, {'Content-Type' => 'text/html', 'Location' => DEFAULT_REDIRECT}, [] ] if Rack::IP.new(env['action_dispatch.remote_ip'] || req.ip).is_tor?
+      return [302, {'Content-Type' => 'text/html', 'Location' => DEFAULT_REDIRECT}, [] ] if (Rack::IP.new(env['action_dispatch.remote_ip'] || req.ip).is_tor?) && req.url != DEFAULT_REDIRECT
         
       #Normal processing
       @app.call(env)
