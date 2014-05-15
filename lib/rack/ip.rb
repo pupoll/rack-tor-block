@@ -17,7 +17,6 @@ module Rack
     end
     
     def is_tor? #Implements https://www.torproject.org/projects/tordnsel.html.en
-      return true
       Resolv.getaddress(tor_hostname) == TOR_POSITIVE_IP
     rescue Errno::EHOSTUNREACH, Errno::ENETUNREACH, Resolv::ResolvError => e
       false
